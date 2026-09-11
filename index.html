@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LearningBox Hero Section Redesign</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#F4BD18",        // Brand Yellow
+              "primary-hover": "#FF731E", // Brand Orange
+              "background-light": "#F3F4F6",
+              "background-dark": "#000976", // Brand Navy
+              "text-light": "#1F2937",
+              "text-dark": "#F9FAFB",
+              "accent-blue": "#26AADC",  // Brand Blue
+              "accent-orange": "#FF731E", // Brand Orange
+              "brand-navy": "#000976",   // Brand Navy
+            },
+            fontFamily: {
+              display: ["Montserrat", "sans-serif"],
+              sans: ["system-ui", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+.mobile-img {
+  display: none;
+}
+
+.desktop-img {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .desktop-img {
+    display: none;
+  }
+
+  .mobile-img {
+    display: block;
+  }
+}
+
+.hero-overlay {
+            background: linear-gradient(to bottom, rgba(17, 24, 39, 0.4) 0%, rgba(17, 24, 39, 0.7) 60%, rgba(17, 24, 39, 0.9) 100%);
+        }
+        .text-shadow-sm {
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* ── Did You Know Slideshow ── */
+        #dyk-section {
+            background: linear-gradient(135deg, #000976 0%, #001499 50%, #000976 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        #dyk-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(244,189,24,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .dyk-slide {
+            display: none;
+            animation: dykFadeIn 0.6s ease forwards;
+        }
+        .dyk-slide.active {
+            display: flex;
+        }
+        @keyframes dykFadeIn {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0);    }
+        }
+        .dyk-progress-bar {
+            height: 3px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .dyk-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #F4BD18, #FF731E);
+            border-radius: 2px;
+            width: 0%;
+            transition: width linear;
+        }
+        .dyk-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+        .dyk-dot.active {
+            background: #F4BD18;
+            width: 24px;
+            border-radius: 4px;
+        }
+        .dyk-nav-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+        }
+        .dyk-nav-btn:hover {
+            background: rgba(244,189,24,0.2);
+            border-color: #F4BD18;
+        }
+        .dyk-stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(244,189,24,0.15);
+            border: 1px solid rgba(244,189,24,0.35);
+            border-radius: 999px;
+            padding: 4px 14px;
+            font-size: 0.75rem;
+            color: #F4BD18;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .dyk-big-number {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #F4BD18 0%, #FF731E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+          .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            overflow-anchor: none;
+          }
+          .faq-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+          }
+          .faq-question {
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0 0 1rem;
+          }
+          .faq-question::-webkit-details-marker {
+            display: none;
+          }
+          .faq-question:focus-visible {
+            outline: 3px solid rgba(38,170,220,0.35);
+            outline-offset: 5px;
+            border-radius: 0.25rem;
+          }
+          .faq-icon {
+            color: #000976;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+          }
+          .faq-item[open] .faq-icon {
+            transform: rotate(180deg);
+          }
+          .faq-answer {
+            margin: 0 0 1rem 0.75rem;
+            padding-left: 0.875rem;
+            border-left: 2px solid rgba(38,170,220,0.3);
+          }
+          .faq-item[open] .faq-answer {
+            animation: faqAnswerReveal 0.28s ease-out both;
+          }
+          @keyframes faqAnswerReveal {
+            from {
+              opacity: 0;
+              transform: translateY(-8px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-text-light dark:text-text-dark antialiased">
+
+<!-- ==========================================
+     LAUNCH TIMER BLOCK (REMOVE AFTER LAUNCH)
+     ========================================== -->
+<div id="launch-timer-block" class="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-brand-navy pb-10 transition-opacity duration-1000" style="background: linear-gradient(135deg, #000976 0%, #001499 50%, #000976 100%);">
+    <div class="text-center px-4 relative z-10 w-full max-w-4xl mx-auto">
+        <!-- Logo -->
+        <div class="inline-block bg-white rounded-full p-4 mb-8 shadow-2xl">
+            <img src="logo.png" height="120" width="120" alt="LearningBox Logo" class="mx-auto">
+        </div>
+        
+        <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-xl">
+            We are <span class="text-transparent bg-clip-text" style="background-image:linear-gradient(90deg,#26AADC,#F4BD18);">Launching Soon</span>
+        </h1>
+        <p class="text-lg md:text-2xl text-gray-300 font-light mb-12 max-w-2xl mx-auto">
+            Get ready to experience India’s first digital tools to decode and improve Gen Z–manager harmony.
+        </p>
+
+        <!-- Timer Grid -->
+        <div class="flex justify-center gap-4 md:gap-8 flex-wrap">
+            <div class="flex flex-col items-center">
+                <div id="timer-days" class="w-20 h-20 md:w-28 md:h-28 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 flex items-center justify-center text-3xl md:text-5xl font-display font-black text-primary shadow-lg">00</div>
+                <span class="text-gray-400 mt-3 text-xs md:text-sm font-bold uppercase tracking-widest">Days</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div id="timer-hours" class="w-20 h-20 md:w-28 md:h-28 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 flex items-center justify-center text-3xl md:text-5xl font-display font-black text-primary shadow-lg">00</div>
+                <span class="text-gray-400 mt-3 text-xs md:text-sm font-bold uppercase tracking-widest">Hours</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div id="timer-minutes" class="w-20 h-20 md:w-28 md:h-28 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 flex items-center justify-center text-3xl md:text-5xl font-display font-black text-primary shadow-lg">00</div>
+                <span class="text-gray-400 mt-3 text-xs md:text-sm font-bold uppercase tracking-widest">Minutes</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div id="timer-seconds" class="w-20 h-20 md:w-28 md:h-28 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 flex items-center justify-center text-3xl md:text-5xl font-display font-black text-primary shadow-lg">00</div>
+                <span class="text-gray-400 mt-3 text-xs md:text-sm font-bold uppercase tracking-widest">Seconds</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Decorative overlays -->
+    <div style="position:absolute;top:-20%;left:-10%;width:50%;height:50%;border-radius:50%;background:radial-gradient(circle,rgba(244,189,24,0.15) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-20%;right:-10%;width:50%;height:50%;border-radius:50%;background:radial-gradient(circle,rgba(38,170,220,0.15) 0%,transparent 70%);pointer-events:none;"></div>
+
+    <script>
+        (function() {
+            // Target date: 20 April 2026, 7:00 AM IST. (IST is UTC +5:30)
+            const targetDate = new Date("2026-04-20T07:00:00+05:30").getTime();
+            const launchBlock = document.getElementById("launch-timer-block");
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance <= 0) {
+                    // Time is up, hide block naturally
+                    launchBlock.style.opacity = '0';
+                    setTimeout(() => {
+                        launchBlock.style.display = 'none';
+                    }, 1000); // Wait for fade out
+                    return;
+                }
+
+                // Time calculations
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display
+                const pad = (num) => num.toString().padStart(2, '0');
+                document.getElementById("timer-days").innerText = pad(days);
+                document.getElementById("timer-hours").innerText = pad(hours);
+                document.getElementById("timer-minutes").innerText = pad(minutes);
+                document.getElementById("timer-seconds").innerText = pad(seconds);
+                
+                // Block scroll while timer is active
+                document.body.style.overflow = "hidden";
+            }
+
+            // Run immediately, then every second
+            updateTimer();
+            const timerInterval = setInterval(updateTimer, 1000);
+
+            // Once it's zero, we restore scroll
+            const checkDone = setInterval(() => {
+                if (launchBlock.style.display === 'none') {
+                    document.body.style.overflow = "";
+                    clearInterval(timerInterval);
+                    clearInterval(checkDone);
+                }
+            }, 500);
+        })();
+    </script>
+</div>
+<!-- ==========================================
+     END LAUNCH TIMER BLOCK
+     ========================================== -->
+
+<nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b bg-background-blue border-white/10 bg-white/5 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+<div class="bg-white rounded-full p-2 h-10 w-10 flex items-center justify-center shadow-lg">
+<span class="">
+    <a href="."><img src="logo.png" height="100" width="100" alt=""></a>
+</span>
+</div>
+<span class="font-display font-bold text-2xl text-white tracking-wide">
+    <!-- <a href=".">Learning<span class="text-primary">Box</span></a> -->
+    <a href="."><span class="text-transparent bg-clip-text" style="background-image:linear-gradient(90deg,#fff,#F4BD18);">LearningBox</span></a>
+</span>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-white hover:text-primary transition-colors duration-200 text-sm font-semibold uppercase tracking-wider" href="about.html">About</a>
+<a class="text-white hover:text-primary transition-colors duration-200 text-sm font-semibold uppercase tracking-wider" href="flagship.html">Products</a>
+<a class="text-white hover:text-primary transition-colors duration-200 text-sm font-semibold uppercase tracking-wider" href="manager.html">Managers</a>
+<a class="text-white hover:text-primary transition-colors duration-200 text-sm font-semibold uppercase tracking-wider" href="gen-z.html">Gen Z</a>
+<a class="text-white hover:text-primary transition-colors duration-200 text-sm font-semibold uppercase tracking-wider" href="products.php">Shop</a>
+</div>
+<div class="hidden md:flex items-center">
+<a href="/register.html" class="bg-primary hover:bg-yellow-400 text-gray-900 font-bold py-2.5 px-6 rounded-full shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2" href="#">
+<span>REGISTER TODAY</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="md:hidden flex items-center">
+<button id="mobile-menu-btn" class="text-gray-200 hover:text-white focus:outline-none" type="button">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<section id="hero">
+<div class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Diverse group of young professionals collaborating in a modern glass office" class="hero-img desktop-img w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6vbomWbrv3qn1Bc0a1GvdniBOxC19D33PDx1L7yWTSBsHv_p8n0s-IAtE88bThyUF0p5giA-pub8alCzMGtCM_8ADQ-4nvkQfb1ir7M5sypBAcXEPFsGpEziYv4nhF0LKpAyGHqv9agkrVLMBlM1TbthgR-4QzTQcHvXvDeB7YFx5Jm9r9verLRc96D5iIAtZxAiiR4ixu1Tvw7Nf3XGpxfEx7c5DSl7uOqMu7U8A3AgNGsi7CSk_vnOEebDsCMPKHon9hpqoiiqG"/>
+
+<div class="absolute inset-0 hero-overlay"></div>
+
+<img 
+  src="hero banner.jpg" 
+  class="hero-img mobile-img w-full h-full object-cover object-center" 
+/>
+
+<div class="absolute inset-0 hero-overlay"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 pb-16">
+<div class="inline-block mb-6 animate-fade-in-up">
+<span class="bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium tracking-wide uppercase">
+                    Educate, Empower and Transform
+                </span>
+</div>
+<h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight max-w-5xl mx-auto drop-shadow-xl">
+                Fix the <span class="text-transparent bg-clip-text" style="background-image:linear-gradient(90deg,#26AADC,#F4BD18);">Gen Z–Manager</span><br class="hidden md:block"/> Relationship Gap
+            </h1>
+<p class="text-lg md:text-xl text-gray-200 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+                India’s first digital tools to decode, diagnose, and improve workplace harmony between Gen Z employees and their managers.
+            </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-4 w-full max-w-4xl mx-auto">
+<a class="w-full md:w-auto bg-primary hover:bg-primary-hover text-gray-900 text-base font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-yellow-500/30 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 group" href="https://www.learningbox.in/checkout.php?slug=relationship-health-diagnostic">
+<span class="material-symbols-outlined group-hover:animate-pulse">health_and_safety</span>
+                    Check Relationship Health Now
+                </a>
+<a class="w-full md:w-auto bg-gray-900/80 hover:bg-gray-800 backdrop-blur-sm border border-gray-600 hover:border-primary text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group" href="https://www.learningbox.in/checkout.php?slug=digital-playbook-for-managers">
+<span class="material-symbols-outlined text-primary group-hover:rotate-12 transition-transform">menu_book</span>
+                    Get Manager Playbook
+                </a>
+<a class="w-full md:w-auto bg-transparent hover:bg-white/10 border-2 border-white/30 hover:border-white text-white font-semibold py-3.5 px-8 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group" href="https://www.learningbox.in/checkout.php?slug=gen-z-work-toolkit">
+<span class="material-symbols-outlined" style="color:#26AADC;" class="group-hover:scale-110 transition-transform">construction</span>
+                    Get Gen Z Toolkit
+                </a>
+</div>
+</div>
+<div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent z-10 pointer-events-none"></div>
+</div></section>
+<div class="bg-background-light dark:bg-background-dark py-12 border-t border-gray-200 dark:border-gray-800 relative z-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+<div class="flex items-start gap-4 p-4 rounded-xl hover:bg-white dark:hover:bg-gray-800 transition-colors">
+<div style="background:rgba(38,170,220,0.15);" class="p-3 rounded-lg" style="color:#26AADC;">
+<span class="material-symbols-outlined" style="color:#26AADC;">psychology</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Decode Mindsets</h3>
+<p class="text-gray-600 dark:text-gray-400 text-sm">Understand the core drivers of different generations.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl hover:bg-white dark:hover:bg-gray-800 transition-colors">
+<div style="background:rgba(244,189,24,0.15);" class="p-3 rounded-lg">
+<span class="material-symbols-outlined" style="color:#F4BD18;">analytics</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Diagnose Gaps</h3>
+<p class="text-gray-600 dark:text-gray-400 text-sm">Data-driven insights into communication breakdowns.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl hover:bg-white dark:hover:bg-gray-800 transition-colors">
+<div style="background:rgba(255,115,30,0.15);" class="p-3 rounded-lg">
+<span class="material-symbols-outlined" style="color:#FF731E;">handshake</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Improve Harmony</h3>
+<p class="text-gray-600 dark:text-gray-400 text-sm">Actionable strategies for a cohesive workplace.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- ════════════════════════════════════════════════
+     WHY LEARNING BOX EXISTS
+════════════════════════════════════════════════ -->
+<section id="why-us" class="py-20 px-4 relative overflow-hidden" style="background: linear-gradient(135deg, rgba(0,9,118,0.04) 0%, rgba(38,170,220,0.06) 100%), #F8F9FB;">
+
+  <!-- ambient glows -->
+  <div style="position:absolute;top:-80px;left:-60px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(0,9,118,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(38,170,220,0.15) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <span style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(90deg, rgba(0,9,118,0.1), rgba(38,170,220,0.1));border:1px solid rgba(0,9,118,0.2);border-radius:999px;padding:5px 18px;font-size:0.72rem;color:#000976;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;box-shadow: 0 4px 12px rgba(0,9,118,0.08);">
+        <span class="material-symbols-outlined" style="font-size:0.95rem;color:#26AADC;">lightbulb</span>
+        Why Learning Box Exists
+      </span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mt-5 leading-tight">
+        We Built This to
+        <span style="background:linear-gradient(90deg,#26AADC,#000976);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"> Bridge the Gap</span>
+      </h2>
+      <p style="color:#6b7280;" class="mt-3 max-w-xl mx-auto text-sm">Learning Box was built to address the exact friction between how managers think and how Gen Z experiences work.</p>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+
+      <!-- LEFT — mission + bullet groups -->
+      <div>
+        <!-- Mission statement card -->
+        <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.05);box-shadow:0 4px 20px rgba(0,0,0,0.03);border-radius:1.25rem;padding:1.75rem 2rem;margin-bottom:1.75rem;">
+          <p style="color:#374151;font-size:0.95rem;line-height:1.75;">
+            We created <strong style="color:#F4BD18;">India's first structured suite of digital tools</strong> designed to help both sides of the workplace equation:
+          </p>
+          <ul class="mt-4 space-y-3">
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#6b7280;">
+              <span style="width:7px;height:7px;border-radius:50%;background:#F4BD18;flex-shrink:0;margin-top:5px;"></span>
+              Managers understand how Gen Z experiences work
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#6b7280;">
+              <span style="width:7px;height:7px;border-radius:50%;background:#F4BD18;flex-shrink:0;margin-top:5px;"></span>
+              Employees understand how managers think, decide, and communicate
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#6b7280;">
+              <span style="width:7px;height:7px;border-radius:50%;background:#F4BD18;flex-shrink:0;margin-top:5px;"></span>
+              Both sides reduce assumptions and emotional escalation
+            </li>
+          </ul>
+        </div>
+
+        <!-- Our tools help -->
+        <div style="background:rgba(38,170,220,0.04);border:1px solid rgba(38,170,220,0.15);border-radius:1.25rem;padding:1.5rem 2rem;margin-bottom:1.25rem;">
+          <p style="font-size:0.7rem;font-weight:800;color:#26AADC;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.875rem;">Our Tools Help</p>
+          <ul class="space-y-2.5">
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#4b5563;">
+              <span class="material-symbols-outlined" style="font-size:1rem;color:#26AADC;flex-shrink:0;">check_circle</span>
+              Decode workplace relationship patterns
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#4b5563;">
+              <span class="material-symbols-outlined" style="font-size:1rem;color:#26AADC;flex-shrink:0;">check_circle</span>
+              Diagnose friction safely and early
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#4b5563;">
+              <span class="material-symbols-outlined" style="font-size:1rem;color:#26AADC;flex-shrink:0;">check_circle</span>
+              Improve conversations without blame or labelling
+            </li>
+          </ul>
+        </div>
+
+        <!-- All without -->
+        <div style="background:rgba(255,115,30,0.04);border:1px solid rgba(255,115,30,0.15);border-radius:1.25rem;padding:1.5rem 2rem;">
+          <p style="font-size:0.7rem;font-weight:800;color:#FF731E;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.875rem;">All Without</p>
+          <ul class="space-y-2.5">
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#4b5563;">
+              <span class="material-symbols-outlined" style="font-size:1rem;color:#FF731E;flex-shrink:0;">block</span>
+              HR intervention
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#4b5563;">
+              <span class="material-symbols-outlined" style="font-size:1rem;color:#FF731E;flex-shrink:0;">block</span>
+              Live sessions or face-to-face exposure
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:#4b5563;">
+              <span class="material-symbols-outlined" style="font-size:1rem;color:#FF731E;flex-shrink:0;">block</span>
+              Therapy or counselling language
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RIGHT — large pull-quote panel -->
+      <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.05);box-shadow:0 4px 20px rgba(0,0,0,0.03);border-radius:1.5rem;padding:2.5rem;display:flex;flex-direction:column;gap:2rem;height:100%;">
+
+        <!-- quote mark -->
+        <div style="font-size:5rem;line-height:1;color:#F4BD18;opacity:0.25;font-family:'Georgia',serif;margin-bottom:-1rem;">"</div>
+
+        <p style="color:#374151;font-size:1.15rem;line-height:1.75;font-style:italic;">
+          Most workplace tools talk only to HR or only to leadership. Learning Box talks directly to the
+          <span style="color:#F4BD18;font-style:normal;font-weight:700;">individual</span> — the person actually experiencing the friction.
+        </p>
+
+        <div style="border-top:1px solid rgba(0,0,0,0.05);padding-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div style="text-align:center;background:rgba(244,189,24,0.08);border-radius:0.875rem;padding:1rem 0.75rem;">
+            <div class="font-display font-black" style="font-size:1.8rem;background:linear-gradient(135deg,#F4BD18,#FF731E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">100%</div>
+            <div style="color:#6b7280;font-size:0.75rem;margin-top:4px;">Digital &amp; Instant</div>
+          </div>
+          <div style="text-align:center;background:rgba(38,170,220,0.08);border-radius:0.875rem;padding:1rem 0.75rem;">
+            <div class="font-display font-black" style="font-size:1.8rem;color:#26AADC;">₹999</div>
+            <div style="color:#6b7280;font-size:0.75rem;margin-top:4px;">Start from</div>
+          </div>
+          <div style="text-align:center;background:rgba(255,115,30,0.08);border-radius:0.875rem;padding:1rem 0.75rem;">
+            <div class="font-display font-black" style="font-size:1.8rem;color:#FF731E;">0</div>
+            <div style="color:#6b7280;font-size:0.75rem;margin-top:4px;">Live Sessions</div>
+          </div>
+          <div style="text-align:center;background:rgba(0,0,0,0.03);border-radius:0.875rem;padding:1rem 0.75rem;">
+            <div class="font-display font-black text-gray-900" style="font-size:1.8rem;">3</div>
+            <div style="color:#6b7280;font-size:0.75rem;margin-top:4px;">Products Available</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /two-col -->
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     WHAT LEARNING BOX DOES
+════════════════════════════════════════════════ -->
+<section id="what-we-do" class="py-24 px-4 relative overflow-hidden" style="background: linear-gradient(135deg, rgba(38,170,220,0.06) 0%, rgba(0,9,118,0.04) 100%), #ffffff;">
+
+  <!-- Subtle background decoration -->
+  <div style="position:absolute;top:-120px;right:-120px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(0,9,118,0.1) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-80px;left:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(38,170,220,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+
+    <!-- Section label -->
+    <div class="text-center mb-16">
+      <span style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(90deg, rgba(38,170,220,0.12), rgba(0,9,118,0.08));border:1px solid rgba(38,170,220,0.3);border-radius:999px;padding:5px 16px;font-size:0.75rem;color:#000976;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;box-shadow: 0 4px 12px rgba(38,170,220,0.1);">
+        <span class="material-symbols-outlined" style="font-size:1rem;color:#26AADC;">construction</span>
+        Our Approach
+      </span>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <!-- LEFT — headline + copy + lists -->
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl xl:text-5xl font-bold leading-tight mb-6" >
+          What <span style="background:linear-gradient(90deg,#26AADC,#000976);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Learning Box</span> Does
+        </h2>
+
+        <p class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-3">
+          We Don't Just Train. We <span class="text-primary">Repair Relationships</span> at Work.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed">
+          Work today is not just about skills. It is about communication, expectations, trust, and alignment. Learning Box provides practical digital tools that help individuals and managers:
+        </p>
+
+        <!-- What we help with -->
+        <ul class="space-y-3 mb-10">
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center" style="background:rgba(244,189,24,0.18);">
+              <span class="material-symbols-outlined" style="font-size:0.9rem;color:#F4BD18;">psychology</span>
+            </span>
+            <span class="text-gray-700 dark:text-gray-300">Understand workplace relationship patterns</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center" style="background:rgba(244,189,24,0.18);">
+              <span class="material-symbols-outlined" style="font-size:0.9rem;color:#F4BD18;">forum</span>
+            </span>
+            <span class="text-gray-700 dark:text-gray-300">Navigate difficult conversations</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center" style="background:rgba(244,189,24,0.18);">
+              <span class="material-symbols-outlined" style="font-size:0.9rem;color:#F4BD18;">handshake</span>
+            </span>
+            <span class="text-gray-700 dark:text-gray-300">Reduce friction across generations</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center" style="background:rgba(244,189,24,0.18);">
+              <span class="material-symbols-outlined" style="font-size:0.9rem;color:#F4BD18;">lightbulb</span>
+            </span>
+            <span class="text-gray-700 dark:text-gray-300">Work with clarity, not confusion</span>
+          </li>
+        </ul>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-100 dark:border-gray-800 pt-8">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">All Tools Are</p>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <span class="material-symbols-outlined" style="font-size:1.1rem;color:#26AADC;">devices</span>
+              100% Digital
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <span class="material-symbols-outlined" style="font-size:1.1rem;color:#26AADC;">schedule</span>
+              Self-Paced
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <span class="material-symbols-outlined" style="font-size:1.1rem;color:#26AADC;">menu_book</span>
+              Script-Based & Practical
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <span class="material-symbols-outlined" style="font-size:1.1rem;color:#26AADC;">location_on</span>
+              India-Specific
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-gray-400 dark:text-gray-500">
+            Designed for Tier 1, 2, and 3 cities across India — no live sessions required.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT — feature cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+        <div style="background:linear-gradient(135deg,#fffceb,#fff3c4);border:1px solid rgba(244,189,24,0.3);border-radius:1rem;padding:1.5rem;" class="hover:-translate-y-1 transition-transform duration-300">
+          <div style="width:44px;height:44px;border-radius:0.75rem;background:linear-gradient(135deg,#F4BD18,#FF731E);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+            <span class="material-symbols-outlined text-white" style="font-size:1.3rem;">health_and_safety</span>
+          </div>
+          <h4 class="font-bold text-gray-900 mb-1 text-base">Relationship Health Check</h4>
+          <p class="text-gray-600 text-sm leading-relaxed">Diagnose the state of your Gen Z–manager dynamic with data-driven assessments.</p>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#e8f7fd,#c8eaf8);border:1px solid rgba(38,170,220,0.3);border-radius:1rem;padding:1.5rem;" class="hover:-translate-y-1 transition-transform duration-300">
+          <div style="width:44px;height:44px;border-radius:0.75rem;background:linear-gradient(135deg,#26AADC,#1E8CB5);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+            <span class="material-symbols-outlined text-white" style="font-size:1.3rem;">menu_book</span>
+          </div>
+          <h4 class="font-bold text-gray-900 mb-1 text-base">Manager Playbook</h4>
+          <p class="text-gray-600 text-sm leading-relaxed">Practical, script-based guides to lead younger teams with empathy and clarity.</p>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#fff3ee,#ffe0cc);border:1px solid rgba(255,115,30,0.25);border-radius:1rem;padding:1.5rem;" class="hover:-translate-y-1 transition-transform duration-300">
+          <div style="width:44px;height:44px;border-radius:0.75rem;background:linear-gradient(135deg,#FF731E,#CC5A17);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+            <span class="material-symbols-outlined text-white" style="font-size:1.3rem;">construction</span>
+          </div>
+          <h4 class="font-bold text-gray-900 mb-1 text-base">Gen Z Toolkit</h4>
+          <p class="text-gray-600 text-sm leading-relaxed">Equip younger professionals to communicate effectively and grow at work.</p>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#e8f3ff,#cfe5f8);border:1px solid rgba(0,9,118,0.15);border-radius:1rem;padding:1.5rem;" class="hover:-translate-y-1 transition-transform duration-300">
+          <div style="width:44px;height:44px;border-radius:0.75rem;background:linear-gradient(135deg,#000976,#001fcc);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+            <span class="material-symbols-outlined text-white" style="font-size:1.3rem;">analytics</span>
+          </div>
+          <h4 class="font-bold text-gray-900 mb-1 text-base">Workplace Diagnostics</h4>
+          <p class="text-gray-600 text-sm leading-relaxed">Surface gaps in communication, mentorship, and expectations with actionable insights.</p>
+        </div>
+
+      </div><!-- /grid -->
+    </div><!-- /two-col -->
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════════════ -->
+<section id="how-it-works" class="py-20 px-4 relative overflow-hidden" style="background:#000976;">
+
+  <!-- radial glow accents -->
+  <div style="position:absolute;top:-60px;left:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(244,189,24,0.14) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(38,170,220,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="max-w-5xl mx-auto relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:5px 18px;font-size:0.72rem;color:rgba(255,255,255,0.65);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">
+        <span class="material-symbols-outlined" style="font-size:0.95rem;">route</span>
+        How It Works
+      </span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-white mt-5 leading-tight">
+        Get Started in
+        <span style="background:linear-gradient(90deg,#F4BD18,#FF731E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"> Four Simple Steps</span>
+      </h2>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative">
+
+      <!-- Dashed connector line (desktop only) -->
+      <div class="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px" style="border-top:2px dashed rgba(255,255,255,0.12);z-index:0;"></div>
+
+      <!-- Step 1 -->
+      <div class="relative z-10 flex flex-col items-center text-center">
+        <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#F4BD18,#FF731E);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(244,189,24,0.45);margin-bottom:1.25rem;flex-shrink:0;">
+          <span class="font-display font-black text-white text-xl" style="line-height:1;">1</span>
+        </div>
+        <div class="material-symbols-outlined mb-2" style="font-size:1.6rem;color:#F4BD18;">storefront</div>
+        <h4 class="font-display font-bold text-white text-base mb-1">Choose Your Product</h4>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.55;max-width:160px;">Pick the tool that fits your role — employee or manager.</p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative z-10 flex flex-col items-center text-center">
+        <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#FF731E,#cc5a17);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(255,115,30,0.4);margin-bottom:1.25rem;flex-shrink:0;">
+          <span class="font-display font-black text-white text-xl" style="line-height:1;">2</span>
+        </div>
+        <div class="material-symbols-outlined mb-2" style="font-size:1.6rem;color:#FF731E;">payment</div>
+        <h4 class="font-display font-bold text-white text-base mb-1">Pay Securely</h4>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.55;max-width:160px;">UPI · Card · Netbanking — quick and safe checkout.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative z-10 flex flex-col items-center text-center">
+        <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#26AADC,#1e8cb5);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(38,170,220,0.4);margin-bottom:1.25rem;flex-shrink:0;">
+          <span class="font-display font-black text-white text-xl" style="line-height:1;">3</span>
+        </div>
+        <div class="material-symbols-outlined mb-2" style="font-size:1.6rem;color:#26AADC;">download_done</div>
+        <h4 class="font-display font-bold text-white text-base mb-1">Get Instant Access</h4>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.55;max-width:160px;">Your digital product is delivered instantly after payment.</p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="relative z-10 flex flex-col items-center text-center">
+        <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#3b56e8,#000976);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,9,118,0.5);margin-bottom:1.25rem;border:2px solid rgba(255,255,255,0.15);flex-shrink:0;">
+          <span class="font-display font-black text-white text-xl" style="line-height:1;">4</span>
+        </div>
+        <div class="material-symbols-outlined mb-2" style="font-size:1.6rem;color:rgba(255,255,255,0.7);">self_improvement</div>
+        <h4 class="font-display font-bold text-white text-base mb-1">Learn at Your Pace</h4>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.55;max-width:160px;">No schedules. No live sessions. Go at your own speed.</p>
+      </div>
+
+    </div><!-- /steps -->
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     OUR PRODUCTS
+════════════════════════════════════════════════ -->
+<section id="products" class="py-24 px-4 relative overflow-hidden" style="background:#F8F9FB;">
+
+  <!-- Ambient glows -->
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;">
+    <div style="position:absolute;top:-80px;left:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(244,189,24,0.10) 0%,transparent 70%);"></div>
+    <div style="position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(38,170,220,0.08) 0%,transparent 70%);"></div>
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:200px;background:radial-gradient(ellipse,rgba(255,115,30,0.06) 0%,transparent 70%);"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,9,118,0.06);border:1px solid rgba(0,9,118,0.15);border-radius:999px;padding:5px 18px;font-size:0.72rem;color:#000976;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">
+        <span class="material-symbols-outlined" style="font-size:0.95rem;">storefront</span>
+        Our Products
+      </span>
+      <h2 class="font-display text-3xl md:text-5xl font-bold text-gray-900 mt-5 mb-3 leading-tight">
+        Three Tools. One Goal —
+        <span style="background:linear-gradient(90deg,#F4BD18,#FF731E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"> Workplace Harmony.</span>
+      </h2>
+      <p style="color:#6b7280;" class="max-w-lg mx-auto text-sm md:text-base">
+        100% digital · Self-paced · India-specific · No live sessions
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- ── CARD 1 — Diagnostic (Yellow) ── -->
+      <div class="relative flex flex-col rounded-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+           style="background:#ffffff;border:1px solid rgba(244,189,24,0.2);box-shadow:0 4px 24px rgba(244,189,24,0.08);">
+        <!-- Accent top bar -->
+        <div style="height:4px;background:linear-gradient(90deg,#F4BD18,#FF731E);"></div>
+
+        <div class="p-7 flex flex-col flex-1">
+          <!-- Icon + Number -->
+          <div class="flex items-center gap-3 mb-5">
+            <div style="width:44px;height:44px;border-radius:0.875rem;background:linear-gradient(135deg,#F4BD18,#FF731E);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(244,189,24,0.4);">
+              <span class="material-symbols-outlined text-white" style="font-size:1.3rem;">health_and_safety</span>
+            </div>
+            <span style="font-size:0.7rem;font-weight:800;color:#F4BD18;letter-spacing:0.1em;text-transform:uppercase;">Product 01</span>
+          </div>
+
+          <!-- Title -->
+          <h3 class="font-display text-lg font-bold text-gray-900 leading-snug mb-2">
+            Gen Z – Manager Relationship Health Diagnostic
+          </h3>
+          <p style="color:#6b7280;font-size:0.85rem;line-height:1.6;" class="mb-5">
+            Understand how workplace relationships are experienced — across communication, trust, and feedback.
+          </p>
+
+          <!-- Audience -->
+          <div class="flex flex-wrap gap-1.5 mb-6">
+            <span style="background:rgba(244,189,24,0.12);border:1px solid rgba(244,189,24,0.3);border-radius:999px;padding:2px 10px;font-size:0.68rem;color:#F4BD18;font-weight:600;">Employees</span>
+            <span style="background:rgba(244,189,24,0.12);border:1px solid rgba(244,189,24,0.3);border-radius:999px;padding:2px 10px;font-size:0.68rem;color:#F4BD18;font-weight:600;">Managers</span>
+            <span style="background:rgba(244,189,24,0.12);border:1px solid rgba(244,189,24,0.3);border-radius:999px;padding:2px 10px;font-size:0.68rem;color:#F4BD18;font-weight:600;">Professionals</span>
+          </div>
+
+          <!-- Deliverables -->
+          <ul class="space-y-2 mb-6">
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#374151;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#F4BD18;flex-shrink:0;"></span> Diagnostic Framework Overview Report
+            </li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#374151;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#F4BD18;flex-shrink:0;"></span> Personalised Insight Report
+            </li>
+          </ul>
+
+          <!-- Price + CTA -->
+          <div class="mt-auto">
+            <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px;">
+              <span class="font-display text-3xl font-black text-gray-900">₹999</span>
+              <span style="text-decoration:line-through;font-size:0.75rem;color:#9ca3af;">₹1,499</span>
+              <span style="font-size:0.68rem;font-weight:700;color:#4ade80;background:rgba(74,222,128,0.12);border-radius:999px;padding:2px 8px;">Launch Price</span>
+            </div>
+            <a href="https://www.learningbox.in/checkout.php?slug=relationship-health-diagnostic" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px;border-radius:12px;font-weight:700;font-size:0.9rem;color:#000976;background:linear-gradient(135deg,#F4BD18,#FF731E);box-shadow:0 4px 24px rgba(244,189,24,0.4);transition:all 0.25s;" class="hover:opacity-90 hover:-translate-y-0.5">
+              <span class="material-symbols-outlined" style="font-size:1rem;">health_and_safety</span>
+              Check Your Relationship Health
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CARD 2 — Manager Playbook (Blue) ── -->
+      <div class="relative flex flex-col rounded-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+           style="background:#ffffff;border:1px solid rgba(38,170,220,0.2);box-shadow:0 4px 24px rgba(38,170,220,0.07);">
+        <div style="height:4px;background:linear-gradient(90deg,#26AADC,#000976);"></div>
+
+        <div class="p-7 flex flex-col flex-1">
+          <div class="flex items-center gap-3 mb-5">
+            <div style="width:44px;height:44px;border-radius:0.875rem;background:linear-gradient(135deg,#26AADC,#1E8CB5);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(38,170,220,0.4);">
+              <span class="material-symbols-outlined text-white" style="font-size:1.3rem;">menu_book</span>
+            </div>
+            <span style="font-size:0.7rem;font-weight:800;color:#26AADC;letter-spacing:0.1em;text-transform:uppercase;">Product 02</span>
+          </div>
+
+          <h3 class="font-display text-lg font-bold text-gray-900 leading-snug mb-2">
+            Managing Gen Z in India — Digital Playbook
+          </h3>
+          <p style="color:#6b7280;font-size:0.85rem;line-height:1.6;" class="mb-5">
+            Practical, script-based guides for managers to lead Gen Z teams with clarity and confidence.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mb-6">
+            <span style="background:rgba(38,170,220,0.12);border:1px solid rgba(38,170,220,0.3);border-radius:999px;padding:2px 10px;font-size:0.68rem;color:#26AADC;font-weight:600;">Managers</span>
+            <span style="background:rgba(38,170,220,0.12);border:1px solid rgba(38,170,220,0.3);border-radius:999px;padding:2px 10px;font-size:0.68rem;color:#26AADC;font-weight:600;">Team Leads</span>
+            <span style="background:rgba(38,170,220,0.12);border:1px solid rgba(38,170,220,0.3);border-radius:999px;padding:2px 10px;font-size:0.68rem;color:#26AADC;font-weight:600;">HR Professionals</span>
+          </div>
+
+          <ul class="space-y-2 mb-6">
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#374151;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#26AADC;flex-shrink:0;"></span> Pre-Read Guide + Conversation Handouts
+            </li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#374151;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#26AADC;flex-shrink:0;"></span> Full Digital Playbook (40–50 pages)
+            </li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#374151;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#26AADC;flex-shrink:0;"></span> 30-Day Manager Reset Plan
+            </li>
+          </ul>
+
+          <div class="mt-auto">
+            <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px;">
+              <span class="font-display text-3xl font-black text-gray-900">₹1,999</span>
+              <span style="font-size:0.75rem;color:#9ca3af;">one-time</span>
+            </div>
+            <a href="https://www.learningbox.in/checkout.php?slug=digital-playbook-for-managers" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px;border-radius:12px;font-weight:700;font-size:0.9rem;color:#fff;background:linear-gradient(135deg,#26AADC,#1E8CB5);box-shadow:0 4px 24px rgba(38,170,220,0.4);transition:all 0.25s;" class="hover:opacity-90 hover:-translate-y-0.5">
+              <span class="material-symbols-outlined" style="font-size:1rem;">menu_book</span>
+              Get the Manager Playbook
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CARD 3 — Gen Z Toolkit (Orange) ── -->
+      <div class="relative flex flex-col rounded-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+           style="background:#ffffff;border:1px solid rgba(255,115,30,0.2);box-shadow:0 4px 24px rgba(255,115,30,0.07);">
+        <div style="height:4px;background:linear-gradient(90deg,#FF731E,#F4BD18);"></div>
+
+        <div class="p-7 flex flex-col flex-1">
+          <div class="flex items-center gap-3 mb-5">
+            <div style="width:44px;height:44px;border-radius:0.875rem;background:linear-gradient(135deg,#FF731E,#CC5A17);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(255,115,30,0.4);">
+              <span class="material-symbols-outlined text-white" style="font-size:1.3rem;">construction</span>
+            </div>
+            <span style="font-size:0.7rem;font-weight:800;color:#FF731E;letter-spacing:0.1em;text-transform:uppercase;">Product 03</span>
+          </div>
+
+          <h3 class="font-display text-lg font-bold text-gray-900 leading-snug mb-2">
+            Gen Z @ Work — Survival &amp; Harmony Toolkit
+          </h3>
+          <p style="color:#6b7280;font-size:0.85rem;line-height:1.6;" class="mb-5">
+            Navigate Indian workplaces with confidence — handle managers, set boundaries, and build your career.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mb-6">
+            <span style="background:rgba(255,115,30,0.12);border:1px solid rgba(255,115,30,0.3);border-radius:999px;padding:2px 10px;font-size:0.68rem;color:#FF731E;font-weight:600;">Freshers</span>
+            <span style="background:rgba(255,115,30,0.12);border:1px solid rgba(255,115,30,0.3);border-radius:999px;padding:2px 10px;font-size:0.68rem;color:#FF731E;font-weight:600;">0–5 Year Professionals</span>
+          </div>
+
+          <ul class="space-y-2 mb-6">
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#374151;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#FF731E;flex-shrink:0;"></span> Core Toolkit + Cheat Sheets
+            </li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#374151;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#FF731E;flex-shrink:0;"></span> Employee Script Handouts
+            </li>
+          </ul>
+
+          <div class="mt-auto">
+            <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px;">
+              <span class="font-display text-3xl font-black text-gray-900">₹999</span>
+              <span style="font-size:0.75rem;color:#9ca3af;">one-time</span>
+            </div>
+            <a href="https://www.learningbox.in/checkout.php?slug=gen-z-work-toolkit" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px;border-radius:12px;font-weight:700;font-size:0.9rem;color:#fff;background:linear-gradient(135deg,#FF731E,#CC5A17);box-shadow:0 4px 24px rgba(255,115,30,0.4);transition:all 0.25s;" class="hover:opacity-90 hover:-translate-y-0.5">
+              <span class="material-symbols-outlined" style="font-size:1rem;">construction</span>
+              Get the Gen Z Toolkit
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cards -->
+
+    <!-- Bottom note -->
+    <p class="text-center mt-10" style="color:#9ca3af;font-size:0.8rem;">
+      All products are 100% digital &amp; delivered instantly · Designed for Tier 1, 2, and 3 cities across India
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     WHO IT IS FOR
+════════════════════════════════════════════════ -->
+<section id="who-its-for" class="py-20 px-4 relative overflow-hidden" style="background:#F8F9FB;">
+
+  <!-- soft glows -->
+  <div style="position:absolute;top:-80px;right:-40px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(244,189,24,0.09) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-60px;left:-40px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(38,170,220,0.07) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,9,118,0.06);border:1px solid rgba(0,9,118,0.15);border-radius:999px;padding:5px 18px;font-size:0.72rem;color:#000976;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">
+        <span class="material-symbols-outlined" style="font-size:0.95rem;">groups</span>
+        Who It Is For
+      </span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mt-5 leading-tight">
+        Built for Everyone
+        <span style="background:linear-gradient(90deg,#F4BD18,#FF731E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"> in the Room</span>
+      </h2>
+      <p class="text-gray-500 mt-3 max-w-md mx-auto text-sm">Whether you lead teams or are just starting out — there's a tool here for you.</p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Card 1 — Managers -->
+      <div class="bg-white rounded-2xl p-7 shadow-sm hover:-translate-y-1 transition-transform duration-300" style="border-left:4px solid #F4BD18;box-shadow:0 4px 20px rgba(244,189,24,0.08);">
+        <div style="width:48px;height:48px;border-radius:0.875rem;background:linear-gradient(135deg,#F4BD18,#FF731E);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;box-shadow:0 4px 14px rgba(244,189,24,0.35);">
+          <span class="material-symbols-outlined text-white" style="font-size:1.4rem;">manage_accounts</span>
+        </div>
+        <h3 class="font-display font-bold text-gray-900 text-lg mb-1">Managers &amp; Leaders</h3>
+        <p style="font-size:0.78rem;color:#F4BD18;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem;">For those who lead</p>
+        <ul class="space-y-2.5">
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4b5563;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#F4BD18;flex-shrink:0;margin-top:5px;"></span>
+            Managing Gen Z teams
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4b5563;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#F4BD18;flex-shrink:0;margin-top:5px;"></span>
+            Reducing workplace friction
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4b5563;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#F4BD18;flex-shrink:0;margin-top:5px;"></span>
+            Leading without toxicity
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 2 — Employees -->
+      <div class="bg-white rounded-2xl p-7 shadow-sm hover:-translate-y-1 transition-transform duration-300" style="border-left:4px solid #26AADC;box-shadow:0 4px 20px rgba(38,170,220,0.08);">
+        <div style="width:48px;height:48px;border-radius:0.875rem;background:linear-gradient(135deg,#26AADC,#1E8CB5);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;box-shadow:0 4px 14px rgba(38,170,220,0.35);">
+          <span class="material-symbols-outlined text-white" style="font-size:1.4rem;">person</span>
+        </div>
+        <h3 class="font-display font-bold text-gray-900 text-lg mb-1">Employees &amp; Professionals</h3>
+        <p style="font-size:0.78rem;color:#26AADC;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem;">For those who grow</p>
+        <ul class="space-y-2.5">
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4b5563;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#26AADC;flex-shrink:0;margin-top:5px;"></span>
+            Understanding managers
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4b5563;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#26AADC;flex-shrink:0;margin-top:5px;"></span>
+            Navigating growth conversations
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4b5563;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#26AADC;flex-shrink:0;margin-top:5px;"></span>
+            Building career confidence
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 3 — Organisations -->
+      <div class="bg-white rounded-2xl p-7 shadow-sm hover:-translate-y-1 transition-transform duration-300" style="border-left:4px solid #FF731E;box-shadow:0 4px 20px rgba(255,115,30,0.08);">
+        <div style="width:48px;height:48px;border-radius:0.875rem;background:linear-gradient(135deg,#FF731E,#CC5A17);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;box-shadow:0 4px 14px rgba(255,115,30,0.35);">
+          <span class="material-symbols-outlined text-white" style="font-size:1.4rem;">corporate_fare</span>
+        </div>
+        <h3 class="font-display font-bold text-gray-900 text-lg mb-1">Organisations</h3>
+        <p style="font-size:0.78rem;color:#FF731E;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem;">For those who scale</p>
+        <ul class="space-y-2.5">
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4b5563;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#FF731E;flex-shrink:0;margin-top:5px;"></span>
+            Supporting people at scale
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4b5563;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#FF731E;flex-shrink:0;margin-top:5px;"></span>
+            Improving conversation quality
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4b5563;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#FF731E;flex-shrink:0;margin-top:5px;"></span>
+            Reducing avoidable conflict
+          </li>
+        </ul>
+      </div>
+
+    </div><!-- /cards -->
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     DID YOU KNOW — animated stats slideshow
+════════════════════════════════════════════════ -->
+<section id="dyk-section" class="py-20 px-4">
+  <div class="max-w-4xl mx-auto relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <span class="dyk-stat-badge mb-4">
+        <span class="material-symbols-outlined text-sm">lightbulb</span>
+        Data & Insights
+      </span>
+      <h2 class="font-display text-3xl md:text-5xl font-bold text-white mt-4 mb-3">
+        Did You <span class="text-transparent bg-clip-text" style="background-image:linear-gradient(90deg,#F4BD18,#FF731E);">Know?</span>
+      </h2>
+      <p class="text-gray-400 text-base md:text-lg max-w-xl mx-auto">
+        Why Gen Z–Manager friction matters across India's workforce
+      </p>
+      <!-- Progress bar -->
+      <div class="dyk-progress-bar mt-8 max-w-xs mx-auto">
+        <div class="dyk-progress-fill" id="dykProgressFill"></div>
+      </div>
+    </div>
+
+    <!-- Slides -->
+    <div id="dykSlider" class="min-h-[320px] md:min-h-[260px]">
+
+      <!-- Slide 1 -->
+      <div class="dyk-slide active flex-col md:flex-row items-center gap-8 md:gap-14 text-center md:text-left">
+        <div class="shrink-0">
+          <div class="dyk-big-number">27%</div>
+          <div class="text-gray-500 text-xs mt-1 uppercase tracking-widest">by 2025</div>
+        </div>
+        <div>
+          <div class="dyk-stat-badge mb-3">
+            <span class="material-symbols-outlined text-sm">groups</span>
+            Workforce Segment
+          </div>
+          <h3 class="text-white text-xl md:text-2xl font-bold mb-2 leading-snug">Gen Z is a Major Workforce Segment</h3>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+            By 2025, Gen Z is expected to make up about <strong class="text-white">27%</strong> of the workforce in India — a significant demographic reshaping organisational culture and expectations.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="dyk-slide flex-col md:flex-row items-center gap-8 md:gap-14 text-center md:text-left">
+        <div class="shrink-0">
+          <div class="dyk-big-number">94%</div>
+          <div class="text-gray-500 text-xs mt-1 uppercase tracking-widest">Gen Z India</div>
+        </div>
+        <div>
+          <div class="dyk-stat-badge mb-3">
+            <span class="material-symbols-outlined text-sm">school</span>
+            Learning & Growth
+          </div>
+          <h3 class="text-white text-xl md:text-2xl font-bold mb-2 leading-snug">Learning & Growth Are Top Priorities</h3>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+            A striking <strong class="text-white">94%</strong> of Indian Gen Z say on-the-job learning drives their career growth — with <strong class="text-white">97%</strong> of millennials agreeing — showing just how central continuous learning is to engagement and retention.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="dyk-slide flex-col md:flex-row items-center gap-8 md:gap-14 text-center md:text-left">
+        <div class="shrink-0">
+          <div class="dyk-big-number">62%</div>
+          <div class="text-gray-500 text-xs mt-1 uppercase tracking-widest">want more</div>
+        </div>
+        <div>
+          <div class="dyk-stat-badge mb-3">
+            <span class="material-symbols-outlined text-sm">manage_accounts</span>
+            Mentorship Gap
+          </div>
+          <h3 class="text-white text-xl md:text-2xl font-bold mb-2 leading-snug">Skills, Mentorship & Manager Guidance Gaps</h3>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+            While <strong class="text-white">62%</strong> of Indian Gen Z employees want more guidance from managers, only <strong class="text-white">44%</strong> feel they actually receive it — highlighting a critical expectation gap between younger employees and their leaders.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="dyk-slide flex-col md:flex-row items-center gap-8 md:gap-14 text-center md:text-left">
+        <div class="shrink-0">
+          <div class="dyk-big-number">90%+</div>
+          <div class="text-gray-500 text-xs mt-1 uppercase tracking-widest">agree</div>
+        </div>
+        <div>
+          <div class="dyk-stat-badge mb-3">
+            <span class="material-symbols-outlined text-sm">communication</span>
+            Work Preferences
+          </div>
+          <h3 class="text-white text-xl md:text-2xl font-bold mb-2 leading-snug">Work Preferences Reflect New Norms</h3>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+            Over <strong class="text-white">90%</strong> of India's Gen Z workforce believe that visual communication skills are crucial to career success — underscoring how communication styles differ from older generations.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="dyk-slide flex-col md:flex-row items-center gap-8 md:gap-14 text-center md:text-left">
+        <div class="shrink-0">
+          <div class="dyk-big-number">#1</div>
+          <div class="text-gray-500 text-xs mt-1 uppercase tracking-widest">priority</div>
+        </div>
+        <div>
+          <div class="dyk-stat-badge mb-3">
+            <span class="material-symbols-outlined text-sm">balance</span>
+            Shifting Expectations
+          </div>
+          <h3 class="text-white text-xl md:text-2xl font-bold mb-2 leading-snug">Workplace Expectations Are Shifting</h3>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+            India's Gen Z prioritises <strong class="text-white">better pay, flexible hours, and work-life balance</strong> — and many are actively questioning traditional workplace structures and incentives.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="dyk-slide flex-col md:flex-row items-center gap-8 md:gap-14 text-center md:text-left">
+        <div class="shrink-0">
+          <div class="dyk-big-number">↑</div>
+          <div class="text-gray-500 text-xs mt-1 uppercase tracking-widest">values-led</div>
+        </div>
+        <div>
+          <div class="dyk-stat-badge mb-3">
+            <span class="material-symbols-outlined text-sm">star</span>
+            Career Choices
+          </div>
+          <h3 class="text-white text-xl md:text-2xl font-bold mb-2 leading-snug">Career Choices Are Values-Driven</h3>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+            For India's Gen Z and millennials, <strong class="text-white">career progression and hands-on learning</strong> rank among the top drivers of job decisions — often outweighing traditional benefits like seniority or perks.
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /dykSlider -->
+
+    <!-- Controls -->
+    <div class="flex items-center justify-center gap-4 mt-10">
+      <button class="dyk-nav-btn" id="dykPrev" aria-label="Previous">
+        <span class="material-symbols-outlined text-xl">chevron_left</span>
+      </button>
+
+      <div class="flex items-center gap-2" id="dykDots"></div>
+
+      <button class="dyk-nav-btn" id="dykNext" aria-label="Next">
+        <span class="material-symbols-outlined text-xl">chevron_right</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  const slides   = document.querySelectorAll('.dyk-slide');
+  const dotsWrap = document.getElementById('dykDots');
+  const fillEl   = document.getElementById('dykProgressFill');
+  const INTERVAL = 5000; // ms per slide
+  let current = 0, timer, fillTimer, fillStart;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dyk-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to slide ' + (i+1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function getDots(){ return dotsWrap.querySelectorAll('.dyk-dot'); }
+
+  function goTo(index){
+    slides[current].classList.remove('active');
+    getDots()[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    getDots()[current].classList.add('active');
+    resetProgress();
+  }
+
+  function resetProgress(){
+    clearTimeout(timer);
+    cancelAnimationFrame(fillTimer);
+    fillEl.style.transition = 'none';
+    fillEl.style.width = '0%';
+    // Force reflow before re-enabling transition
+    void fillEl.offsetWidth;
+    fillEl.style.transition = 'width ' + INTERVAL + 'ms linear';
+    fillEl.style.width = '100%';
+    timer = setTimeout(() => goTo(current + 1), INTERVAL);
+  }
+
+  document.getElementById('dykPrev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('dykNext').addEventListener('click', () => goTo(current + 1));
+
+  // Pause on hover
+  const section = document.getElementById('dyk-section');
+  section.addEventListener('mouseenter', () => {
+    clearTimeout(timer);
+    fillEl.style.animationPlayState = 'paused';
+    // Freeze width
+    const computed = getComputedStyle(fillEl).width;
+    const parentW  = fillEl.parentElement.offsetWidth;
+    const pct = (parseFloat(computed) / parentW * 100).toFixed(1);
+    fillEl.style.transition = 'none';
+    fillEl.style.width = pct + '%';
+  });
+  section.addEventListener('mouseleave', () => {
+    const current_pct = parseFloat(fillEl.style.width) || 0;
+    const remaining   = INTERVAL * (1 - current_pct / 100);
+    fillEl.style.transition = 'width ' + remaining + 'ms linear';
+    fillEl.style.width = '100%';
+    timer = setTimeout(() => goTo(current + 1), remaining);
+  });
+
+  resetProgress();
+})();
+</script>
+
+<!-- ════════════════════════════════════════════════
+     ABOUT LEARNING BOX
+════════════════════════════════════════════════ -->
+<section id="about" class="py-20 px-4 relative overflow-hidden" style="background:#F8F9FB;">
+
+  <!-- glows -->
+  <div style="position:absolute;top:-60px;right:-40px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(244,189,24,0.08) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-60px;left:-40px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(38,170,220,0.07) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,9,118,0.06);border:1px solid rgba(0,9,118,0.15);border-radius:999px;padding:5px 18px;font-size:0.72rem;color:#000976;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">
+        <span class="material-symbols-outlined" style="font-size:0.95rem;">info</span>
+        About Learning Box
+      </span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mt-5 leading-tight">
+        A Platform Built on
+        <span style="background:linear-gradient(90deg,#F4BD18,#FF731E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"> Clarity &amp; Application</span>
+      </h2>
+      <p class="text-gray-500 mt-3 max-w-lg mx-auto text-sm">Learning Box is a workplace learning platform focused on clarity, alignment, and real-world application.</p>
+    </div>
+
+    <!-- 3-column grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+
+      <!-- Col 1 — Built on expertise -->
+      <div class="bg-white rounded-2xl p-7" style="border-top:4px solid #F4BD18;box-shadow:0 4px 20px rgba(244,189,24,0.07);">
+        <div style="width:46px;height:46px;border-radius:0.875rem;background:linear-gradient(135deg,#F4BD18,#FF731E);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;box-shadow:0 4px 14px rgba(244,189,24,0.3);">
+          <span class="material-symbols-outlined text-white" style="font-size:1.3rem;">school</span>
+        </div>
+        <h3 class="font-display font-bold text-gray-900 text-lg mb-1">Built on Deep Experience</h3>
+        <p style="font-size:0.78rem;color:#F4BD18;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem;">Our foundation</p>
+        <div class="flex flex-wrap gap-2">
+          <span style="background:rgba(244,189,24,0.12);border:1px solid rgba(244,189,24,0.3);border-radius:999px;padding:4px 12px;font-size:0.78rem;color:#7a4800;font-weight:600;">Instructional Design</span>
+          <span style="background:rgba(244,189,24,0.12);border:1px solid rgba(244,189,24,0.3);border-radius:999px;padding:4px 12px;font-size:0.78rem;color:#7a4800;font-weight:600;">Leadership Development</span>
+          <span style="background:rgba(244,189,24,0.12);border:1px solid rgba(244,189,24,0.3);border-radius:999px;padding:4px 12px;font-size:0.78rem;color:#7a4800;font-weight:600;">Career Coaching</span>
+          <span style="background:rgba(244,189,24,0.12);border:1px solid rgba(244,189,24,0.3);border-radius:999px;padding:4px 12px;font-size:0.78rem;color:#7a4800;font-weight:600;">Corporate Learning</span>
+        </div>
+      </div>
+
+      <!-- Col 2 — What we don't do / How we help -->
+      <div class="bg-white rounded-2xl p-7" style="border-top:4px solid #26AADC;box-shadow:0 4px 20px rgba(38,170,220,0.07);">
+        <div style="width:46px;height:46px;border-radius:0.875rem;background:linear-gradient(135deg,#26AADC,#1E8CB5);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;box-shadow:0 4px 14px rgba(38,170,220,0.3);">
+          <span class="material-symbols-outlined text-white" style="font-size:1.3rem;">handshake</span>
+        </div>
+        <h3 class="font-display font-bold text-gray-900 text-lg mb-3">Our Role</h3>
+
+        <p style="font-size:0.7rem;font-weight:800;color:#FF731E;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.6rem;">We Don't Aim To</p>
+        <ul class="space-y-2 mb-4">
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.83rem;color:#6b7280;">
+            <span class="material-symbols-outlined" style="font-size:0.9rem;color:#FF731E;">remove_circle</span> "Fix" people
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.83rem;color:#6b7280;">
+            <span class="material-symbols-outlined" style="font-size:0.9rem;color:#FF731E;">remove_circle</span> Label generations
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.83rem;color:#6b7280;">
+            <span class="material-symbols-outlined" style="font-size:0.9rem;color:#FF731E;">remove_circle</span> Replace organisational systems
+          </li>
+        </ul>
+
+        <p style="font-size:0.7rem;font-weight:800;color:#26AADC;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.6rem;">We Help People</p>
+        <ul class="space-y-2">
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.83rem;color:#6b7280;">
+            <span class="material-symbols-outlined" style="font-size:0.9rem;color:#26AADC;">check_circle</span> Understand each other before reacting
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.83rem;color:#6b7280;">
+            <span class="material-symbols-outlined" style="font-size:0.9rem;color:#26AADC;">check_circle</span> Communicate expectations clearly
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.83rem;color:#6b7280;">
+            <span class="material-symbols-outlined" style="font-size:0.9rem;color:#26AADC;">check_circle</span> Navigate difficult conversations
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3 — Educate Empower Transform -->
+      <div class="bg-white rounded-2xl p-7 flex flex-col" style="border-top:4px solid #FF731E;box-shadow:0 4px 20px rgba(255,115,30,0.07);">
+        <div style="width:46px;height:46px;border-radius:0.875rem;background:linear-gradient(135deg,#FF731E,#CC5A17);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;box-shadow:0 4px 14px rgba(255,115,30,0.3);">
+          <span class="material-symbols-outlined text-white" style="font-size:1.3rem;">rocket_launch</span>
+        </div>
+        <h3 class="font-display font-bold text-gray-900 text-lg mb-3">Educate · Empower · Transform</h3>
+        <div class="space-y-3 mb-6">
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:#F4BD18;flex-shrink:0;margin-top:5px;"></div>
+            <p style="font-size:0.83rem;color:#6b7280;"><strong style="color:#374151;">Educated</strong> about real workplace dynamics</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:#26AADC;flex-shrink:0;margin-top:5px;"></div>
+            <p style="font-size:0.83rem;color:#6b7280;"><strong style="color:#374151;">Empowered</strong> with practical, ready-to-use tools</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:#FF731E;flex-shrink:0;margin-top:5px;"></div>
+            <p style="font-size:0.83rem;color:#6b7280;"><strong style="color:#374151;">Supported</strong> through thoughtful, quiet change</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /3-col -->
+
+    <!-- Closing tagline banner -->
+    <div class="rounded-2xl px-8 py-7 text-center" style="background:linear-gradient(135deg,#000976 0%,#0a1fa8 100%);box-shadow:0 8px 32px rgba(0,9,118,0.25);">
+      <p class="font-display font-bold text-white text-xl md:text-2xl leading-relaxed">
+        Learning Box exists to educate, empower, and transform<br class="hidden md:block"/>
+        how people work together —
+        <span style="background:linear-gradient(90deg,#F4BD18,#FF731E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">quietly, practically, and effectively.</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FAQS
+════════════════════════════════════════════════ -->
+<section id="faqs" class="py-20 px-4 relative overflow-hidden bg-white">
+  <div class="max-w-4xl mx-auto relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(38,170,220,0.08);border:1px solid rgba(38,170,220,0.2);border-radius:999px;padding:5px 18px;font-size:0.72rem;color:#000976;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">
+        <span class="material-symbols-outlined" style="font-size:0.95rem;">help</span>
+        Got Questions?
+      </span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mt-5 leading-tight">
+        Frequently Asked
+        <span style="background:linear-gradient(90deg,#26AADC,#000976);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"> Questions</span>
+      </h2>
+    </div>
+
+    <!-- FAQ Grid -->
+    <div id="faq-grid" class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+
+      <!-- Q1 -->
+      <details class="faq-item">
+        <summary class="faq-question font-display font-bold text-gray-900 text-base">
+          <span class="flex items-start gap-2">
+          <span style="width:6px;height:6px;border-radius:50%;background:#F4BD18;flex-shrink:0;margin-top:7px;"></span>
+          Is this suitable for remote teams?
+          </span>
+          <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
+        </summary>
+        <p class="faq-answer text-gray-500 text-sm leading-relaxed" style="border-color:rgba(244,189,24,0.3);">
+          Absolutely. All tools are digital and can be completed online.
+        </p>
+      </details>
+
+      <!-- Q2 -->
+      <details class="faq-item">
+        <summary class="faq-question font-display font-bold text-gray-900 text-base">
+          <span class="flex items-start gap-2">
+          <span style="width:6px;height:6px;border-radius:50%;background:#26AADC;flex-shrink:0;margin-top:7px;"></span>
+          Do I need HR or Organization approval?
+          </span>
+          <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
+        </summary>
+        <p class="faq-answer text-gray-500 text-sm leading-relaxed" style="border-color:rgba(38,170,220,0.3);">
+          No, you do not need any approvals.
+        </p>
+      </details>
+
+      <!-- Q3 -->
+      <details class="faq-item">
+        <summary class="faq-question font-display font-bold text-gray-900 text-base">
+          <span class="flex items-start gap-2">
+          <span style="width:6px;height:6px;border-radius:50%;background:#FF731E;flex-shrink:0;margin-top:7px;"></span>
+          How long does the Diagnostic take?
+          </span>
+          <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
+        </summary>
+        <p class="faq-answer text-gray-500 text-sm leading-relaxed" style="border-color:rgba(255,115,30,0.3);">
+          This takes between 8 to 10 min to answer the questionnaire. 
+        </p>
+      </details>
+
+      <!-- Q4 -->
+      <details class="faq-item">
+        <summary class="faq-question font-display font-bold text-gray-900 text-base">
+          <span class="flex items-start gap-2">
+          <span style="width:6px;height:6px;border-radius:50%;background:#F4BD18;flex-shrink:0;margin-top:7px;"></span>
+          Are the playbooks mobile friendly?
+          </span>
+          <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
+        </summary>
+        <p class="faq-answer text-gray-500 text-sm leading-relaxed" style="border-color:rgba(244,189,24,0.3);">
+          Yes, these are both laptop and mobile friendly.
+        </p>
+      </details>
+
+      <!-- Q5 -->
+      <details class="faq-item">
+        <summary class="faq-question font-display font-bold text-gray-900 text-base">
+          <span class="flex items-start gap-2">
+          <span style="width:6px;height:6px;border-radius:50%;background:#26AADC;flex-shrink:0;margin-top:7px;"></span>
+          Are these one-time payments?
+          </span>
+          <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
+        </summary>
+        <p class="faq-answer text-gray-500 text-sm leading-relaxed" style="border-color:rgba(38,170,220,0.3);">
+          Yes. There are no subscriptions.
+        </p>
+      </details>
+
+      <!-- Q6 -->
+      <details class="faq-item">
+        <summary class="faq-question font-display font-bold text-gray-900 text-base">
+          <span class="flex items-start gap-2">
+          <span style="width:6px;height:6px;border-radius:50%;background:#FF731E;flex-shrink:0;margin-top:7px;"></span>
+          Are there refunds?
+          </span>
+          <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
+        </summary>
+        <p class="faq-answer text-gray-500 text-sm leading-relaxed" style="border-color:rgba(255,115,30,0.3);">
+          Digital products are non-refundable once accessed.
+        </p>
+      </details>
+
+      <!-- Q7 -->
+      <details class="faq-item">
+        <summary class="faq-question font-display font-bold text-gray-900 text-base">
+          <span class="flex items-start gap-2">
+          <span style="width:6px;height:6px;border-radius:50%;background:#F4BD18;flex-shrink:0;margin-top:7px;"></span>
+          Is this suitable for Tier 2 &amp; Tier 3 cities?
+          </span>
+          <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
+        </summary>
+        <p class="faq-answer text-gray-500 text-sm leading-relaxed" style="border-color:rgba(244,189,24,0.3);">
+          Yes. Language and examples are India-wide and simple.
+        </p>
+      </details>
+
+      <!-- Q8 -->
+      <details class="faq-item">
+        <summary class="faq-question font-display font-bold text-gray-900 text-base">
+          <span class="flex items-start gap-2">
+          <span style="width:6px;height:6px;border-radius:50%;background:#26AADC;flex-shrink:0;margin-top:7px;"></span>
+          Do I need to attend sessions?
+          </span>
+          <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
+        </summary>
+        <p class="faq-answer text-gray-500 text-sm leading-relaxed" style="border-color:rgba(38,170,220,0.3);">
+          No. All products are self-paced.
+        </p>
+      </details>
+
+      <!-- Q9 -->
+      <details class="faq-item md:col-span-2">
+        <summary class="faq-question font-display font-bold text-gray-900 text-base">
+          <span class="flex items-start gap-2">
+          <span style="width:6px;height:6px;border-radius:50%;background:#FF731E;flex-shrink:0;margin-top:7px;"></span>
+          Is this counselling or therapy?
+          </span>
+          <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
+        </summary>
+        <p class="faq-answer text-gray-500 text-sm leading-relaxed" style="border-color:rgba(255,115,30,0.3);">
+          No. These are workplace learning tools.
+        </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     CONTACT & SUPPORT / FOOTER
+════════════════════════════════════════════════ -->
+<footer id="contact" class="py-16 px-4 relative overflow-hidden" style="background:#000976;">
+  <div class="max-w-4xl mx-auto relative z-10 text-center">
+    
+    <div class="mb-10">
+      <h2 class="font-display text-3xl font-bold text-white mb-6">Contact &amp; Support</h2>
+      <a href="products.php" class="inline-block text-primary font-semibold underline mb-6">Browse products &amp; services</a>
+      
+      <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+        <a href="mailto:Info@learningbox.in" class="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+          <span class="material-symbols-outlined" style="color:#F4BD18;">mail</span>
+          Info@learningbox.in
+        </a>
+        <a href="tel:+919266146700" class="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+          <span class="material-symbols-outlined" style="color:#26AADC;">call</span>
+          +91 9266146700
+        </a>
+      </div>
+    </div>
+
+    <!-- Social Links (LinkedIn & Instagram) -->
+    <div class="flex justify-center gap-8 mb-12">
+      <!-- LinkedIn Icon -->
+      <a href="https://www.linkedin.com/company/learningbox-lb/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-[#F4BD18] transition-colors" aria-label="LinkedIn">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
+        </svg>
+      </a>
+      <!-- Instagram Icon -->
+      <a href="https://www.instagram.com/learningbox.co?igsh=MXBhcW50aDdpNTBqZw==" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-[#FF731E] transition-colors" aria-label="Instagram">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Copyright -->
+    <div class="pt-8 mt-8 border-t border-white/10">
+      <p class="text-sm text-gray-500">
+        &copy; 2026 Learning Box Consulting. All rights reserved.
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Mobile Navigation Sidebar -->
+<div id="mobile-nav" class="fixed inset-y-0 right-0 w-64 bg-brand-navy shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-[60] flex flex-col">
+  <div class="p-6 flex justify-between items-center border-b border-white/10">
+    <span class="font-display font-bold text-xl text-white tracking-wide">Menu</span>
+    <button id="close-mobile-nav" class="text-gray-300 hover:text-white focus:outline-none transition-colors">
+      <span class="material-symbols-outlined text-3xl">close</span>
+    </button>
+  </div>
+  <div class="flex flex-col px-6 py-8 space-y-6 flex-grow">
+    <a class="text-gray-300 hover:text-primary transition-colors duration-200 text-base font-semibold uppercase tracking-wider" href="about.html">About</a>
+    <a class="text-gray-300 hover:text-primary transition-colors duration-200 text-base font-semibold uppercase tracking-wider" href="flagship.html">Flagship</a>
+    <a class="text-gray-300 hover:text-primary transition-colors duration-200 text-base font-semibold uppercase tracking-wider" href="manager.html">Managers</a>
+    <a class="text-gray-300 hover:text-primary transition-colors duration-200 text-base font-semibold uppercase tracking-wider" href="gen-z.html">Gen Z</a>
+  </div>
+  <div class="p-6 border-t border-white/10">
+    <a href="/contact.html" class="w-full bg-primary hover:bg-yellow-400 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg transition-all duration-200 flex items-center justify-center gap-2" href="#">
+      <span>REGISTER TODAY</span>
+    </a>
+  </div>
+</div>
+<!-- Overlay -->
+<div id="mobile-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileNav = document.getElementById('mobile-nav');
+    const overlay = document.getElementById('mobile-overlay');
+    const openBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-mobile-nav');
+
+    function openMobileNav() {
+      mobileNav.classList.remove('translate-x-full');
+      overlay.classList.remove('hidden');
+      overlay.classList.remove('pointer-events-none');
+      setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileNav() {
+      mobileNav.classList.add('translate-x-full');
+      overlay.classList.add('opacity-0');
+      overlay.classList.add('pointer-events-none');
+      setTimeout(() => overlay.classList.add('hidden'), 300);
+      document.body.style.overflow = '';
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openMobileNav);
+    if (closeBtn) closeBtn.addEventListener('click', closeMobileNav);
+    if (overlay) overlay.addEventListener('click', closeMobileNav);
+
+    const faqItems = document.querySelectorAll('.faq-item');
+    const faqGrid = document.getElementById('faq-grid');
+    const faqColumns = [document.createElement('div'), document.createElement('div')];
+    faqColumns.forEach((column) => {
+      column.className = 'faq-column';
+      faqGrid.appendChild(column);
+    });
+    faqItems.forEach((faqItem, index) => {
+      faqColumns[index % 2].appendChild(faqItem);
+    });
+
+    faqItems.forEach((faqItem) => {
+      faqItem.addEventListener('click', () => {
+        const scrollTop = window.scrollY;
+        requestAnimationFrame(() => window.scrollTo(0, scrollTop));
+      }, true);
+      faqItem.addEventListener('toggle', () => {
+        if (!faqItem.open) return;
+
+        faqItems.forEach((otherFaqItem) => {
+          if (otherFaqItem !== faqItem) otherFaqItem.open = false;
+        });
+      });
+    });
+  });
+  
+</script>
+
+<script>
+const navbar = document.getElementById("navbar");
+const hero = document.getElementById("hero");
+
+// add transition via JS
+navbar.style.transition = "background-color 0.4s ease, box-shadow 0.4s ease";
+
+window.addEventListener("scroll", () => {
+  const heroHeight = hero.offsetHeight;
+  const scrollY = window.scrollY;
+
+  // calculate smooth opacity
+  let opacity = Math.min(scrollY / (heroHeight - 80), 1);
+
+  // apply smooth background
+  navbar.style.backgroundColor = `rgba(0, 9, 118, ${opacity})`;
+
+  // shadow only after slight scroll
+  if (scrollY > 50) {
+    navbar.style.boxShadow = "0 10px 15px rgba(0,0,0,0.2)";
+  } else {
+    navbar.style.boxShadow = "none";
+  }
+});
+</script>
+</body></html>

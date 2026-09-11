@@ -1,0 +1,120 @@
+.checkout-page {
+  --product-accent: #000976;
+  --product-tint: rgba(244, 189, 24, 0.14);
+  --product-gradient: linear-gradient(90deg, #F4BD18, #FF731E);
+  background: #F3F4F6;
+}
+
+.checkout-page[data-product-theme="playbook"] {
+  --product-accent: #000976;
+  --product-tint: rgba(38, 170, 220, 0.12);
+  --product-gradient: linear-gradient(90deg, #26AADC, #000976);
+}
+
+.checkout-page[data-product-theme="toolkit"] {
+  --product-accent: #000976;
+  --product-tint: rgba(255, 115, 30, 0.12);
+  --product-gradient: linear-gradient(90deg, #FF731E, #F4BD18);
+}
+
+.checkout-hero {
+  background:
+    radial-gradient(ellipse at top right, rgba(38, 170, 220, 0.23), transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(244, 189, 24, 0.08), transparent 55%),
+    #000976;
+}
+
+.checkout-heading-accent {
+  background: linear-gradient(90deg, #F4BD18, #FF731E);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.checkout-product-stripe {
+  background: var(--product-gradient);
+}
+
+.checkout-product-icon {
+  background: var(--product-tint);
+  color: var(--product-accent);
+}
+
+.checkout-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.checkout-summary,
+.checkout-form {
+  box-shadow: 0 12px 40px rgba(0, 9, 118, 0.07);
+}
+
+.checkout-product-name,
+.checkout-description,
+.checkout-price,
+#checkout-message,
+#status-link {
+  overflow-wrap: anywhere;
+}
+
+#purchase-form .checkout-input {
+  min-width: 0;
+  min-height: 50px;
+  font-size: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+#purchase-form .checkout-input:focus {
+  border-color: #26AADC;
+  background: white;
+  outline: 2px solid rgba(38, 170, 220, 0.25);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+#purchase-form .checkout-input:user-invalid {
+  border-color: #b91c1c;
+}
+
+.checkout-pay {
+  min-height: 56px;
+  overflow-wrap: anywhere;
+  box-shadow: 0 6px 20px rgba(244, 189, 24, 0.2);
+}
+
+.checkout-pay:focus-visible,
+.checkout-back:focus-visible,
+.checkout-help:focus-visible,
+#status-link:focus-visible {
+  outline: 3px solid #26AADC;
+  outline-offset: 4px;
+}
+
+#checkout-message:not(:empty) {
+  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background: #f9fafb;
+  line-height: 1.6;
+}
+
+#status-link:not(.hidden) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .checkout-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #purchase-form .checkout-input,
+  .checkout-pay {
+    transition: none;
+  }
+}

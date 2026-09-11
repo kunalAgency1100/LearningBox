@@ -1,0 +1,1 @@
+[18-May-2026 17:24:33 UTC] DB Query Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'backend_lb.registrations' doesn't exist

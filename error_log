@@ -1,0 +1,80 @@
+[07-Sep-2026 18:13:54 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'backend_lb.products' doesn't exist in /home/ko8nsd57qp6g/public_html/products.php:4
+Stack trace:
+#0 /home/ko8nsd57qp6g/public_html/products.php(4): PDO->query()
+#1 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/products.php on line 4
+[09-Sep-2026 12:20:14 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:20:14 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:20:20 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:20:20 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:20:23 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:20:23 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:20:27 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:20:27 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:02 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:02 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:04 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:04 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:35 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:35 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:40 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:40 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:44 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:44 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:52 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:21:52 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:23:08 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:23:08 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:23:12 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:23:12 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:23:16 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:23:16 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:26:12 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:26:12 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:26:24 UTC] PHP Warning:  require(/home/ko8nsd57qp6g/public_html/templates/header.html): Failed to open stream: No such file or directory in /home/ko8nsd57qp6g/public_html/checkout.php on line 67
+[09-Sep-2026 12:26:24 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ko8nsd57qp6g/public_html/templates/header.html' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ko8nsd57qp6g/public_html/checkout.php:67
+Stack trace:
+#0 {main}
+  thrown in /home/ko8nsd57qp6g/public_html/checkout.php on line 67

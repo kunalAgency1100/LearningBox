@@ -1,0 +1,41 @@
+/* Shared base styles also support pages without Tailwind's global reset. */
+:where(#site-header, #site-footer) {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+:where(#site-header, #site-footer) :where(*, ::before, ::after) {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+}
+
+:where(#site-header, #site-footer) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(#site-header, #site-footer) button {
+  padding: 0;
+  font-family: inherit;
+  line-height: inherit;
+  background-color: transparent;
+  background-image: none;
+}
+
+:where(#site-header, #site-footer) img {
+  max-width: 100%;
+  height: auto;
+}
+
+:where(#site-header, #site-footer) :where(img, svg) {
+  display: block;
+  vertical-align: middle;
+}
+
+#site-header a:focus-visible,
+#site-header button:focus-visible,
+#site-footer a:focus-visible {
+  outline: 2px solid #F4BD18;
+  outline-offset: 4px;
+}

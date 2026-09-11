@@ -1,0 +1,3 @@
+[18-May-2026 17:24:33 UTC] DB Query Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'backend_lb.registrations' doesn't exist
+[07-Sep-2026 18:21:50 UTC] Commerce API: Payments are not configured.
+[07-Sep-2026 18:22:06 UTC] Commerce API: Payments are not configured.
